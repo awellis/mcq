@@ -1,0 +1,24 @@
+Package: mcq
+Type: Package
+Title: Process Multiple Choice Questions
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Andrew",
+           family = "Ellis",
+           role = c("aut", "cre"),
+           email = "andrewellis@pm.me",
+           comment = c(ORCID = "0000-0002-2788-936X"))
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    assertthat,
+    dplyr,
+    readxl,
+    tidyr
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.1.1
