@@ -40,6 +40,7 @@ score_a_questions <- function(results, answers) {
 }
 
 
+
 #' @export
 score_k_questions <- function(results, answers) {
 
@@ -103,8 +104,6 @@ score_k_questions <- function(results, answers) {
 
     k_scores
 }
-
-
 
 
 
