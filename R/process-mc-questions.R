@@ -31,7 +31,7 @@ score_a_questions <- function(results, answers) {
     ## count correct responses ----
     total_a_scores <- joined %>%
         group_by(Matrikel, StudisID, Nachname, Vorname) %>%
-        summarise(score_a = sum(correct))
+        summarise(score_a = sum(correct, na.rm = TRUE))
 
     a_scores <- joined_wide %>%
         left_join(total_a_scores)
@@ -80,7 +80,7 @@ score_k_questions <- function(results, answers) {
 
     final_k_score <- joined %>%
         group_by(Matrikel, StudisID, Nachname, Vorname, Serie, question_num) %>%
-        summarise(total = sum(item_score))
+        summarise(total = sum(item_score, na.rm = TRUE))
 
     final_k_score <- final_k_score %>%
         mutate(score = case_when(
