@@ -97,7 +97,7 @@ score_k_questions <- function(results, answers) {
 
     total_k_scores <- final_k_score %>%
         group_by(Matrikel, StudisID, Nachname, Vorname, Serie) %>%
-        summarise(score_k = sum(score))
+        summarise(score_k = sum(score, na.rm = TRUE))
 
     k_scores <-  item_k_scores %>%
         left_join(total_k_scores)
