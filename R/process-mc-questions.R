@@ -78,11 +78,11 @@ score_k_questions <- function(results, answers) {
     joined <- joined %>%
         mutate(item_score = if_else(response == correct_response, 1/nk, 0))
 
-    final_k_score <- joined %>%
+    intermediate_k_score <- joined %>%
         group_by(Matrikel, StudisID, Nachname, Vorname, Serie, question_num) %>%
         summarise(total = sum(item_score, na.rm = TRUE))
 
-    final_k_score <- final_k_score %>%
+    final_k_score <- intermediate_k_score %>%
         mutate(score = case_when(
             total == 1 ~ 1,
             total == 0.75 ~ 0.5,
@@ -102,7 +102,7 @@ score_k_questions <- function(results, answers) {
     k_scores <-  item_k_scores %>%
         left_join(total_k_scores)
 
-    k_scores
+    list(final = k_scores, intermediate = intermediate_k_score)
 }
 
 
