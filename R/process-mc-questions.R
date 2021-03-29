@@ -112,7 +112,7 @@ score_exams <- function(results, answers) {
     #TODO: check results and answer
     #TODO: compute scores with answer labels switched
     a_scores <- score_a_questions(results = results, answers = answers)
-    k_scores <- score_k_questions(results = results, answers = answers)
+    k_scores <- score_k_questions(results = results, answers = answers)$final
 
     total <- a_scores %>%
         inner_join(k_scores) %>%
