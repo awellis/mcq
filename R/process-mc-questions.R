@@ -34,7 +34,8 @@ score_a_questions <- function(results, answers) {
         summarise(score_a = sum(correct, na.rm = TRUE))
 
     a_scores <- joined_wide %>%
-        left_join(total_a_scores)
+        left_join(total_a_scores) %>%
+        arrange(Nachname)
 
     a_scores
 }
@@ -82,6 +83,11 @@ score_k_questions <- function(results, answers) {
         group_by(Matrikel, StudisID, Nachname, Vorname, Serie, question_num) %>%
         summarise(total = sum(item_score, na.rm = TRUE))
 
+    intermediate_k_output <- intermediate_k_score %>%
+        mutate(question_num = str_c("K_", question_num)) %>%
+        pivot_wider(names_from = question_num, values_from = total) %>%
+        arrange(Nachname)
+
     final_k_score <- intermediate_k_score %>%
         mutate(score = case_when(
             total == 1 ~ 1,
@@ -100,9 +106,10 @@ score_k_questions <- function(results, answers) {
         summarise(score_k = sum(score, na.rm = TRUE))
 
     k_scores <-  item_k_scores %>%
-        left_join(total_k_scores)
+        left_join(total_k_scores) %>%
+        arrange(Nachname)
 
-    list(final = k_scores, intermediate = intermediate_k_score)
+    list(final = k_scores, intermediate = intermediate_k_output)
 }
 
 
