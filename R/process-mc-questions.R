@@ -1,6 +1,3 @@
-
-library(tidyverse)
-
 #' @export
 score_a_questions <- function(results, answers) {
 
@@ -35,7 +32,7 @@ score_a_questions <- function(results, answers) {
 
     a_scores <- joined_wide %>%
         left_join(total_a_scores) %>%
-        arrange(Nachname)
+        arrange(Nachname, Vorname)
 
     a_scores
 }
@@ -86,7 +83,7 @@ score_k_questions <- function(results, answers) {
     intermediate_k_output <- intermediate_k_score %>%
         mutate(question_num = str_c("K_", question_num)) %>%
         pivot_wider(names_from = question_num, values_from = total) %>%
-        arrange(Nachname)
+        arrange(Nachname, Vorname)
 
     final_k_score <- intermediate_k_score %>%
         mutate(score = case_when(
@@ -107,7 +104,7 @@ score_k_questions <- function(results, answers) {
 
     k_scores <-  item_k_scores %>%
         left_join(total_k_scores) %>%
-        arrange(Nachname)
+        arrange(Nachname, Vorname)
 
     list(final = k_scores, intermediate = intermediate_k_output)
 }

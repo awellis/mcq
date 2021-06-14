@@ -1,5 +1,7 @@
 ## read data ----
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(mcq)
 
 results <- readxl::read_excel("~/GitHub/projects/multiple-choice/data/HS2019-1 Emot Ergebnisse.xlsx",
                               sheet = "Antworten") %>%
